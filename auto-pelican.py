@@ -22,7 +22,9 @@ def print_options():
 def select_and_run_opt():
     print_options()
     opt = input('Select option [%s]:' % util.DEFAULT_OPTION)
-    if opt.isdigit() and int(opt) < len(menu):
+    if not opt:
+        menu[util.DEFAULT_OPTION][1]()
+    elif opt.isdigit() and int(opt) < len(menu):
         menu[int(opt)][1]()
     else:
         util.info('Invalid input. Please retype the number of intended option.')
@@ -30,4 +32,5 @@ def select_and_run_opt():
 
 
 if __name__ == '__main__':
+    util.info(str(util.system_info))
     select_and_run_opt()
