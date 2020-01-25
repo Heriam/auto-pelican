@@ -29,7 +29,7 @@ def select_and_run_opt():
         else:
             util.info('Invalid input. Please retype the number of intended option.')
             select_and_run_opt()
-    except SyntaxError as err:
+    except Exception as err:
         util.info('Invalid input. Please retype the number of intended option.')
         select_and_run_opt()
 
