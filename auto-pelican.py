@@ -23,6 +23,7 @@ def print_options():
 def select_and_run_opt():
     print_options()
     opt = input('Select option [%s]:' % util.DEFAULT_OPTION)
+    print(opt)
     if not opt:
         menu[util.DEFAULT_OPTION][1]()
     elif type(opt) == int or (opt.isdigit() and int(opt) < len(menu)):
