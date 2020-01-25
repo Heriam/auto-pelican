@@ -22,14 +22,16 @@ def print_options():
 # 选择并允许选项
 def select_and_run_opt():
     print_options()
-    opt = input('Select option [%s]:' % util.DEFAULT_OPTION)
-    print('~~~'+ opt)
-    if not opt:
-        print('~ddd~~' + opt)
-        menu[util.DEFAULT_OPTION][1]()
-    elif type(opt) == int or (opt.isdigit() and int(opt) < len(menu)):
-        menu[int(opt)][1]()
-    else:
+    try:
+        opt = input('Select option [%s]:' % util.DEFAULT_OPTION)
+        if not opt:
+            menu[util.DEFAULT_OPTION][1]()
+        elif type(opt) == int or (opt.isdigit() and int(opt) < len(menu)):
+            menu[int(opt)][1]()
+        else:
+            util.info('Invalid input. Please retype the number of intended option.')
+            select_and_run_opt()
+    except SyntaxError as err:
         util.info('Invalid input. Please retype the number of intended option.')
         select_and_run_opt()
 
