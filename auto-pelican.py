@@ -29,6 +29,9 @@ def select_and_run_opt():
         else:
             util.info('Invalid input. Please retype the number of intended option.')
             select_and_run_opt()
+    except KeyboardInterrupt as err:
+        util.info('KeyboardInterrupt Exiting.')
+        sys.exit(0)
     except Exception as err:
         util.info('Invalid input. Please retype the number of intended option.')
         select_and_run_opt()
