@@ -3,7 +3,7 @@ import os
 import sys
 import platform
 import logging
-import configparser
+import json
 import subprocess
 
 # 常量定义 ====
@@ -34,8 +34,8 @@ fh.setFormatter(formatter)
 logger.addHandler(fh)
 
 # 读取配置文件
-config = configparser.ConfigParser()
-config.read('%s.properties' % PROJECT_NAME)
+with open('config.json') as f:
+    config = json.load(f)
 
 
 # 工具方法 ====
