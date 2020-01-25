@@ -24,9 +24,6 @@ env_absolute_path = os.path.abspath(__file__).replace(os.path.basename(__file__)
 # 初始化日志工具
 logger = logging.getLogger(PROJECT_NAME)
 logger.setLevel(logging.DEBUG)
-while logger.hasHandlers():
-    for i in logger.handlers:
-        logger.removeHandler(i)
 formatter = logging.Formatter('[%(asctime)s][%(levelname)s] %(message)s')
 fh = logging.FileHandler(filename=env_absolute_path + '%s.log' % PROJECT_NAME, encoding='utf-8', mode='w')
 fh.setLevel(logging.DEBUG)
