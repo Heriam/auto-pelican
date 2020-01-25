@@ -1,3 +1,4 @@
+# coding=UTF-8
 import sys
 import inspect
 import Iutils as util
