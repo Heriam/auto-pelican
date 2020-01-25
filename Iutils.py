@@ -8,7 +8,6 @@ import subprocess
 
 # 常量定义 ====
 PROJECT_NAME = 'auto-pelican'
-DEFAULT_OPTION = 0
 
 # 工具对象 ====
 # Python版本
