@@ -25,7 +25,7 @@ def select_and_run_opt():
     opt = input('Select option [%s]:' % util.DEFAULT_OPTION)
     if not opt:
         menu[util.DEFAULT_OPTION][1]()
-    elif opt.isdigit() and int(opt) < len(menu):
+    elif type(opt) == int or (opt.isdigit() and int(opt) < len(menu)):
         menu[int(opt)][1]()
     else:
         util.info('Invalid input. Please retype the number of intended option.')
