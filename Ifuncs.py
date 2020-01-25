@@ -7,12 +7,12 @@ py_ver = util.config['install_python3_version']
 
 
 # 更新系统
-def update_packages():
+def _0_update_packages():
     util.shell('yum -y update', False)
 
 
 # 安装 Python3
-def install_python3():
+def _1_install_python3():
     if not (util.python_version[0] == 3 and util.python_version[1] >= 5):
         util.shell('yum -y groupinstall "Development Tools"', False)
         util.shell('yum -y install zlib zlib-devel libffi-devel maven openssl-devel wget', False)
@@ -34,7 +34,7 @@ def install_python3():
 
 
 # 安装 Pelican
-def install_pelican():
+def _2_install_pelican():
     util.shell('git clone git://github.com/getpelican/pelican.git')
     util.shell('cd pelican')
     util.shell('python setup.py install')
