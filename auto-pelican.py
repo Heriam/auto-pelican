@@ -21,22 +21,20 @@ def print_options():
 
 # 选择并允许选项
 def select_and_run_opt():
-    opt = ''
     print_options()
     try:
         opt = input('Select option:')
         if (type(opt) == int or opt.isdigit()) and (int(opt) < len(menu) and int(opt) >= 0):
             menu[int(opt)][1]()
         else:
-            util.info('Invalid input: %s. Please retype the number of intended option.' % opt)
+            util.info('Invalid input. Please retype the number of intended option.')
     except KeyboardInterrupt as err:
         util.info('KeyboardInterrupt Exiting.')
         sys.exit(0)
     except Exception as err:
-        util.info('Invalid input: %s. Please retype the number of intended option.' % opt)
+        util.info('Invalid input. Please retype the number of intended option.')
 
 
 if __name__ == '__main__':
-    util.info(str(util.system_info))
     while True:
         select_and_run_opt()
