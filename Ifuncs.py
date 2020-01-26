@@ -24,8 +24,10 @@ def _1_install_python3():
         util.shell('ln -s /usr/local/python3/bin/python3 /usr/bin/python')
         util.shell('mv /usr/bin/pip /usr/bin/pip2', exit4fail=False)
         util.shell('ln -s /usr/local/python3/bin/pip3 /usr/bin/pip', exit4fail=False)
+        util.shell('pip install --upgrade pip', exit4fail=False)
         util.shell('sed -i "s/#!\/usr\/bin\/python/#!\/usr\/bin\/python2/g" /usr/bin/yum')
         util.shell('sed -i "s/#!\/usr\/bin\/python/#!\/usr\/bin\/python2/g" /usr/libexec/urlgrabber-ext-down')
+        util.shell('echo "export PATH="$PATH:/usr/local/python3/bin/" >> /etc/environment')
         if util.shell('python -V', exit4fail=False) and util.shell('pip -V', exit4fail=False):
             util.info('Python3 installed successfully.')
         else:
@@ -33,6 +35,7 @@ def _1_install_python3():
         sys.exit(0)
     else:
         util.info('Python3 already installed.')
+
 
 # 安装 Pelican
 def _2_install_pelican():
