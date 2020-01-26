@@ -28,6 +28,7 @@ def _1_install_python3():
         util.shell('sed -i "s/#!\/usr\/bin\/python/#!\/usr\/bin\/python2/g" /usr/bin/yum')
         util.shell('sed -i "s/#!\/usr\/bin\/python/#!\/usr\/bin\/python2/g" /usr/libexec/urlgrabber-ext-down')
         util.shell('echo "export PATH=$PATH:/usr/local/python3/bin/" >> /etc/environment')
+        util.shell('source /etc/environment')
         if util.shell('python -V', exit4fail=False) and util.shell('pip -V', exit4fail=False):
             util.info('Python3 installed successfully.')
         else:
@@ -40,5 +41,5 @@ def _1_install_python3():
 # 安装 Pelican
 def _2_install_pelican():
     util.shell('pip install pelican Markdown')
-    util.shell('mkdir blog')
-    util.shell('cd blog && pelican-quickstart')
+    util.shell('mkdir blog', exit4fail=False)
+    util.shell('cd blog && pelican-quickstart', input='\n')
