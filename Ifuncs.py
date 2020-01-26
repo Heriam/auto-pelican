@@ -39,8 +39,6 @@ def _1_install_python3():
 
 # 安装 Pelican
 def _2_install_pelican():
-    util.shell('git clone git://github.com/getpelican/pelican.git')
-    util.shell('cd pelican && python setup.py install')
-    util.shell('pip install markdown')
+    util.shell('pip install pelican Markdown')
     util.shell('mkdir blog')
-    util.shell('cd blog && pelican-quickstart', input('\nHeriam\nJustin\n\nn\n\n\nAsia/Shanghai\n\n\n\n\n\n\n\ny\ny\n'))
+    util.shell('cd blog && pelican-quickstart')
