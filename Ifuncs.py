@@ -44,10 +44,15 @@ def _2_install_pelican():
     util.shell('pip install pelican Markdown pexpect')
     import pexpect
     util.shell('mkdir blog')
+    print('1')
     with open('auto-pelican.log', 'a') as fout:
+        print('2')
         child = pexpect.spawn('cd blog && pelican-quickstart')
+        print('3')
         child.logfile = fout
+        print('4')
         child.expect('new web site? [.]')
+        print('5')
         child.sendline()
         child.expect('title of this web site?')
         child.sendline()
