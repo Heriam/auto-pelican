@@ -46,5 +46,5 @@ def _2_install_pelican():
     p = subprocess.Popen('cd blog && pelican-quickstart', shell=True, stdout=subprocess.PIPE, stdin=subprocess.PIPE)
     while p.stdout.readable():
         print(p.stdout.readline())
-        while p.stdin.writable():
-            p.stdin.write('\n')
+    while p.stdin.writable():
+        p.stdin.write('\n')
