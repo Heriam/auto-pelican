@@ -47,9 +47,10 @@ def _2_install_pelican():
     print('1')
     with open('auto-pelican.log', 'a') as fout:
         print('2')
-        child = pexpect.spawn('cd blog').sendline('pelican-quickstart')
-        print('3')
+        child = pexpect.spawn('cd blog')
         child.logfile = fout
+        print('3')
+        child.sendline('pelican-quickstart')
         print('4')
         child.expect('new web site? [.]')
         print('5')
