@@ -5,9 +5,11 @@ set timeout -1
 spawn cd ~/myBlog
 spawn pelican-quickstart
 
-expect {
-    'Where do you want to create your new web site?' {send '\r'}
-}
+expect 'Where do you want to create your new web site?'
+send '\r'
+
+expect 'title'
+send '\r'
 
 expect eof
 
