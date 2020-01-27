@@ -1,7 +1,7 @@
 # coding=UTF-8
 import sys
 import Iutils as util
-
+import subprocess
 
 
 # 读取配置
@@ -41,19 +41,7 @@ def _1_install_python3():
 
 # 安装 Pelican
 def _2_install_pelican():
-    util.shell('pip install pelican Markdown pexpect')
-    import pexpect
+    util.shell('pip install pelican Markdown')
     util.shell('mkdir blog')
-    print('1')
-    with open('auto-pelican.log', 'a') as fout:
-        print('2')
-        child = pexpect.spawn('cd blog', encoding='utf-8')
-        child.logfile_send = fout
-        print('3')
-        child.sendline('pelican-quickstart')
-        print('4')
-        child.expect(['new web site', pexpect.EOF])
-        print('5')
-        child.sendline()
-        child.expect('title of this web site')
-        child.sendline()
+    p = subprocess.Popen('cd blog && pelican-quickstart', shell=True, stdout=subprocess.PIPE, stdin=subprocess.PIPE)
+    print(p.stdout.readline())
