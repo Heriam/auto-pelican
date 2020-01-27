@@ -3,6 +3,7 @@ import sys
 import Iutils as util
 
 
+
 # 读取配置
 py_ver = util.config['install_python3_version']
 
@@ -43,8 +44,10 @@ def _2_install_pelican():
     util.shell('pip install pelican Markdown pexpect')
     import pexpect
     util.shell('mkdir blog')
-    child = pexpect.spawn('cd blog && pelican-quickstart')
-    child.expect('new web site? [.]')
-    child.sendline()
-    child.expect('title of this web site?')
-    child.sendline()
+    with open('auto-pelican.log', 'a') as fout:
+        child = pexpect.spawn('cd blog && pelican-quickstart')
+        child.logfile = fout
+        child.expect('new web site? [.]')
+        child.sendline()
+        child.expect('title of this web site?')
+        child.sendline()
