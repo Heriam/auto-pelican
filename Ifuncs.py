@@ -47,8 +47,8 @@ def _2_install_pelican():
     print('1')
     with open('auto-pelican.log', 'a') as fout:
         print('2')
-        child = pexpect.spawn('cd blog')
-        child.logfile = fout
+        child = pexpect.spawn('cd blog', encoding='utf-8')
+        child.logfile_send = fout
         print('3')
         child.sendline('pelican-quickstart')
         print('4')
