@@ -40,6 +40,6 @@ def _1_install_python3():
 
 # 安装 Pelican
 def _2_install_pelican():
-    util.shell('pip install pelican Markdown')
+    util.shell('pip install pelican Markdown pexpect')
+    import pexpect
     util.shell('mkdir blog', exit4fail=False)
-    util.shell('cd blog && pelican-quickstart', input=('\n','\n','\n'))
