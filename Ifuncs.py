@@ -42,11 +42,11 @@ def _1_install_python3():
 # 安装 Pelican
 def _2_install_pelican():
     util.shell('pip install pelican Markdown')
-    if os.path.exists('myBlog') and os.path.isdir('myBlog'):
-        util.shell('rm -rf myBlog')
-    util.shell('mkdir myBlog')
+    if os.path.exists('~/myBlog') and os.path.isdir('~/myBlog'):
+        util.shell('rm -rf ~/myBlog')
+    util.shell('mkdir ~/myBlog')
     if util.shell('pelican --version', exit4fail=False):
-        util.info('Pelican installed successfully. Now go to myBlog/ and run "pelican-quickstart" to setup Pelican.')
+        util.info('Pelican installed successfully. Now go to ~/myBlog/ and run "pelican-quickstart" to setup Pelican.')
     else:
         util.error('Pelican installation failed.')
     sys.exit(0)
