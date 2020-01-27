@@ -42,4 +42,4 @@ def _1_install_python3():
 def _2_install_pelican():
     util.shell('pip install pelican Markdown')
     util.shell('mkdir blog', exit4fail=False)
-    util.shell('cd blog && pelican-quickstart', input=['\n','\n','\n'])
+    util.shell('cd blog && pelican-quickstart', input=('\n','\n','\n'))
