@@ -1,7 +1,7 @@
 # coding=UTF-8
 import sys
 import Iutils as util
-import subprocess
+import os
 
 
 # 读取配置
@@ -42,9 +42,11 @@ def _1_install_python3():
 # 安装 Pelican
 def _2_install_pelican():
     util.shell('pip install pelican Markdown')
-    util.shell('mkdir blog')
-    p = subprocess.Popen('cd blog && pelican-quickstart', shell=True, stdout=subprocess.PIPE, stdin=subprocess.PIPE)
-    while p.stdout.readable():
-        print(p.stdout.readline())
-    while p.stdin.writable():
-        p.stdin.write('\n')
+    if os.path.exists('myBlog') and os.path.isdir('myBlog'):
+        util.shell('rm -rf myBlog')
+    util.shell('mkdir myBlog')
+    if util.shell('pelican --version', exit4fail=False):
+        util.info('Pelican installed successfully. Now go to myBlog/ and run "pelican-quickstart" to setup Pelican.')
+    else:
+        util.error('Pelican installation failed.')
+    sys.exit(0)
