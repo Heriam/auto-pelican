@@ -44,4 +44,5 @@ def _2_install_pelican():
     util.shell('pip install pelican Markdown')
     util.shell('mkdir blog')
     p = subprocess.Popen('cd blog && pelican-quickstart', shell=True, stdout=subprocess.PIPE, stdin=subprocess.PIPE)
-    print(p.stdout.readable())
+    while p.stdout.readable():
+        print(p.stdout.readline())
