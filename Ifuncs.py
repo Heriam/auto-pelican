@@ -42,4 +42,9 @@ def _1_install_python3():
 def _2_install_pelican():
     util.shell('pip install pelican Markdown pexpect')
     import pexpect
-    util.shell('mkdir blog', exit4fail=False)
+    util.shell('mkdir blog')
+    child = pexpect.spawn('cd blog && pelican-quickstart')
+    child.expect('new web site? [.]')
+    child.sendline()
+    child.expect('title of this web site?')
+    child.sendline()
