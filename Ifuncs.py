@@ -52,7 +52,7 @@ def _2_install_pelican():
         print('3')
         child.sendline('pelican-quickstart')
         print('4')
-        child.expect('new web site')
+        child.expect(['new web site', pexpect.EOF])
         print('5')
         child.sendline()
         child.expect('title of this web site')
