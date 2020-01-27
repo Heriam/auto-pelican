@@ -21,7 +21,10 @@ def _1_install_python3():
         util.shell('wget https://www.python.org/ftp/python/%s/Python-%s.tgz' % (py_ver,py_ver))
         util.shell('tar -zxvf Python-%s.tgz' % py_ver)
         util.shell('cd Python-%s && ./configure prefix=/usr/local/python3 && make && make install' % py_ver)
-        util.shell('mv /usr/bin/python /usr/bin/python2')
+        if not os.path.exists('/usr/bin/python2'):
+            util.shell('mv /usr/bin/python /usr/bin/python2')
+        else:
+            util.shell('rm -rf /usr/bin/python')
         util.shell('ln -s /usr/local/python3/bin/python3 /usr/bin/python')
         util.shell('mv /usr/bin/pip /usr/bin/pip2', exit4fail=False)
         util.shell('ln -s /usr/local/python3/bin/pip3 /usr/bin/pip', exit4fail=False)
