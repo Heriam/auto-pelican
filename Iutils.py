@@ -45,13 +45,15 @@ def error(error):
     logger.error(error)
 
 
-def shell(cmd, input=None, exit4fail=True):
+def shell(cmd, input=(), exit4fail=True):
     info(cmd)
     succeeded = True
     # 父进程等待子进程完成。返回退出信息(return code，相当于Linux exit code)
     p = subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE)
-    p.communicate(input=input)
-    if p.returncode != 0:
+    if type(input) == tuple:
+        [p.communicate(input=i) for i in input]
+    p.wait()
+    if type(input) != tuple or p.returncode != 0:
         error('failed to execute command "%s"' % cmd)
         succeeded = False
         if exit4fail:
