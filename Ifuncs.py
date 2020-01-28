@@ -48,13 +48,12 @@ def _1_install_python3():
 
 
 # 安装 Pelican
-def _2_install_pelican():
+def _2_setup_pelican():
     util.shell('pip install pelican Markdown')
-    if os.path.exists('~/myBlog') and os.path.isdir('~/myBlog'):
-        util.shell('rm -rf ~/myBlog')
-    util.shell('mkdir ~/myBlog')
-    if util.shell('pelican --version', exit4fail=False):
-        util.info('Pelican installed successfully. Now go to ~/myBlog/ and run "pelican-quickstart" to setup Pelican.')
-    else:
-        util.error('Pelican installation failed.')
-    sys.exit(0)
+    util.shell('git clone https://github.com/Heriam/blog.git')
+    util.shell('cd blog && mkdir output && cd output && git clone https://github.com/Heriam/heriam.github.io.git')
+    util.shell('mv -f config blog/output/heriam.github.io/.git/')
+    util.shell('git clone https://github.com/getpelican/pelican-themes.git')
+    util.shell('cd pelican-themes && pelican-themes -i tuxlite_tbs')
+
+
