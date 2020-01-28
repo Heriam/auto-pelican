@@ -52,7 +52,7 @@ def _2_setup_pelican():
     util.shell('pip install pelican Markdown')
     util.shell('git clone https://github.com/Heriam/blog.git')
     util.shell('cd blog && mkdir output && cd output && git clone https://github.com/Heriam/heriam.github.io.git')
-    util.shell('mv -f config blog/output/heriam.github.io/.git/')
+    util.shell('cd blog && mv -f config output/heriam.github.io/.git/')
     util.shell('git clone https://github.com/getpelican/pelican-themes.git')
     util.shell('cd pelican-themes && pelican-themes -i tuxlite_tbs')
 
