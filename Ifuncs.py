@@ -57,7 +57,8 @@ def _2_setup_pelican():
     util.shell('git clone https://github.com/getpelican/pelican-themes.git')
     util.shell('cd pelican-themes && pelican-themes -i tuxlite_tbs')
     sitePkgDir = site.getsitepackages()[0]
-    util.shell('rm -rf %s/pelican/themes/tuxlite_tbs' % sitePkgDir)
+    if os.path.exists(sitePkgDir+'/pelican/themes/tuxlite_tbs'):
+        util.shell('rm -rf %s/pelican/themes/tuxlite_tbs' % sitePkgDir)
     util.shell('git clone https://github.com/Heriam/tuxlite_tbs.git %s/pelican/themes/tuxlite_tbs' % sitePkgDir)
     util.shell('git clone git://github.com/getpelican/pelican-plugins.git blog/pelican-plugins')
 
