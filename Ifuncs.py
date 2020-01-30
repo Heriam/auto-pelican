@@ -61,7 +61,6 @@ def _2_setup_pelican():
         util.shell('rm -rf %s/pelican/themes/tuxlite_tbs' % sitePkgDir)
     util.shell('git clone https://github.com/Heriam/tuxlite_tbs.git %s/pelican/themes/tuxlite_tbs' % sitePkgDir)
     util.shell('git clone https://github.com/getpelican/pelican-plugins.git blog/pelican-plugins')
-    util.info('Pelican setup successfully. Now run [ssh-keygen -t rsa -b 4096 -C "your_email@example.com"] to generate '
-              'ssh key and then add it to github.com as well as coding.net')
+    util.info('Pelican setup successfully.')
 
 
