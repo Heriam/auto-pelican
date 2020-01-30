@@ -7,7 +7,7 @@ import site
 
 # 读取配置
 py_ver = util.config['install_python3_version']
-
+sitePkgDir = site.getsitepackages()[0]
 
 # 更新系统
 def _0_update_packages():
@@ -50,17 +50,34 @@ def _1_install_python3():
 
 # 安装 Pelican
 def _2_setup_pelican():
+    # pip 安装 Pelican
     util.shell('pip install pelican Markdown')
+    # git clone 博客输入内容
     util.shell('git clone https://github.com/Heriam/blog.git')
+    # git clone 博客输出输出
     util.shell('cd blog && mkdir output && cd output && git clone git@github.com:Heriam/heriam.github.io.git')
+    # 配置Github.com和Coding.net国内网双DNS
     util.shell('cd blog && cp -f config output/heriam.github.io/.git/')
-    util.shell('git clone https://github.com/getpelican/pelican-themes.git')
-    util.shell('cd pelican-themes && pelican-themes -i tuxlite_tbs')
-    sitePkgDir = site.getsitepackages()[0]
-    if os.path.exists(sitePkgDir+'/pelican/themes/tuxlite_tbs'):
-        util.shell('rm -rf %s/pelican/themes/tuxlite_tbs' % sitePkgDir)
-    util.shell('git clone https://github.com/Heriam/tuxlite_tbs.git %s/pelican/themes/tuxlite_tbs' % sitePkgDir)
+    # git clone 基于tuxlite_tbs的自定义博客主题
+    util.shell('git clone https://github.com/Heriam/tuxlite_tbs.git')
+    # 安装 基于tuxlite_tbs的自定义主题
+    util.shell('pelican-themes -i tuxlite_tbs')
+    # git clone 插件库
     util.shell('git clone https://github.com/getpelican/pelican-plugins.git blog/pelican-plugins')
+    # 安装结束
     util.info('Pelican setup successfully.')
 
 
+# 发布更新
+def _3_publish_updates():
+    # 更新博客主题
+    util.shell('cd tuxlite_tbs && git pull')
+    util.shell('pelican-themes -U tuxlite_tbs')
+    # 更新博客内容
+    util.shell('cd blog && git pull')
+    # 更新双DNS配置
+    util.shell('cd blog && cp -f config output/heriam.github.io/.git/')
+    # 升级博客插件
+    util.shell('cd blog/pelican-plugins && git pull')
+    # 发布更新
+    util.shell('cd blog && make github')
