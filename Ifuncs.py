@@ -52,7 +52,7 @@ def _1_install_python3():
 def _2_setup_pelican():
     util.shell('pip install pelican Markdown')
     util.shell('git clone https://github.com/Heriam/blog.git')
-    util.shell('cd blog && mkdir output && cd output && git clone https://github.com/Heriam/heriam.github.io.git')
+    util.shell('cd blog && mkdir output && cd output && git clone git@github.com:Heriam/heriam.github.io.git')
     util.shell('cd blog && mv -f config output/heriam.github.io/.git/')
     util.shell('git clone https://github.com/getpelican/pelican-themes.git')
     util.shell('cd pelican-themes && pelican-themes -i tuxlite_tbs')
@@ -60,7 +60,7 @@ def _2_setup_pelican():
     if os.path.exists(sitePkgDir+'/pelican/themes/tuxlite_tbs'):
         util.shell('rm -rf %s/pelican/themes/tuxlite_tbs' % sitePkgDir)
     util.shell('git clone https://github.com/Heriam/tuxlite_tbs.git %s/pelican/themes/tuxlite_tbs' % sitePkgDir)
-    util.shell('git clone git://github.com/getpelican/pelican-plugins.git blog/pelican-plugins')
+    util.shell('git clone https://github.com/getpelican/pelican-plugins.git blog/pelican-plugins')
     util.info('Pelican setup successfully. Now run [ssh-keygen -t rsa -b 4096 -C "your_email@example.com"] to generate '
               'ssh key and then add it to github.com as well as coding.net')
 
