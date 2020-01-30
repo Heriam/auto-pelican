@@ -9,9 +9,11 @@ import site
 py_ver = util.config['install_python3_version']
 sitePkgDir = site.getsitepackages()[0]
 
+
 # 更新系统
 def _0_update_packages():
     util.shell('yum -y update', exit4fail=False)
+    util.info('System updated successfully.')
 
 
 # 安装 Python3
@@ -81,3 +83,14 @@ def _3_publish_updates():
     util.shell('cd blog/pelican-plugins && git pull')
     # 发布更新
     util.shell('cd blog && make github')
+    # 更新结束
+    util.info('Updates published successfully.')
+
+
+# 安装脚本
+def _4_update_scriptify():
+    with open('update-blog', 'a') as f:
+        f.write('python %sauto-pelican.py 3' % util.env_absolute_path)
+    util.shell('chmod 777 update-blog')
+    util.shell('cp -f update-blog /usr/bin/')
+    util.info('Script generated successfully.')
