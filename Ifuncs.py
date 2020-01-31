@@ -100,6 +100,6 @@ def _4_update_scriptify():
 # 卸载 Blog
 def _5_uninstall_pelican():
     util.shell('rm -rf %s' % util.MY_BLOG_PATH)
-    util.shell('rm -rf /usr/local/dbin/update-blog')
+    util.shell('rm -rf /usr/local/bin/update-blog')
     util.shell('pelican-themes -r tuxlite_tbs')
     util.info('Pelican uninstalled successfully.')
