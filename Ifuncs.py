@@ -17,7 +17,7 @@ def _0_update_packages_centos_only():
 
 
 # 安装 Python3
-def _1_install_python3():
+def _1_install_python3_centos_only():
     if not (util.python_version[0] == 3 and util.python_version[1] >= 5):
         util.shell('yum -y groupinstall "Development Tools"', exit4fail=False)
         util.shell('yum -y install zlib zlib-devel libffi-devel maven openssl-devel wget', exit4fail=False)
