@@ -55,17 +55,18 @@ def _2_setup_pelican():
     # pip 安装 Pelican
     util.shell('pip install pelican Markdown')
     # git clone 博客输入内容
-    util.shell('git clone https://github.com/Heriam/blog.git')
-    # git clone 博客输出输出
-    util.shell('cd blog && mkdir output && cd output && git clone git@github.com:Heriam/heriam.github.io.git')
+    util.shell('git clone https://github.com/Heriam/blog.git %s' % util.MY_BLOG_PATH)
+    # git clone 博客输出内容
+    util.shell('mkdir %s/output' % util.MY_BLOG_PATH)
+    util.shell('git clone git@github.com:Heriam/heriam.github.io.git %s/output/heriam.github.io' % util.MY_BLOG_PATH)
     # 配置Github.com和Coding.net国内网双DNS
-    util.shell('cd blog && cp -f config output/heriam.github.io/.git/')
+    util.shell('cd %s && cp -f config output/heriam.github.io/.git/' % util.MY_BLOG_PATH)
     # git clone 基于tuxlite_tbs的自定义博客主题
-    util.shell('git clone https://github.com/Heriam/tuxlite_tbs.git')
+    util.shell('git clone https://github.com/Heriam/tuxlite_tbs.git %s/tuxlite_tbs' % util.MY_BLOG_PATH)
     # 安装 基于tuxlite_tbs的自定义主题
-    util.shell('pelican-themes -i tuxlite_tbs')
+    util.shell('pelican-themes -i %s/tuxlite_tbs' % util.MY_BLOG_PATH)
     # git clone 插件库
-    util.shell('git clone https://github.com/getpelican/pelican-plugins.git blog/pelican-plugins')
+    util.shell('git clone https://github.com/getpelican/pelican-plugins.git %s/pelican-plugins' % util.MY_BLOG_PATH)
     # 安装结束
     util.info('Pelican setup successfully.')
 
@@ -73,24 +74,31 @@ def _2_setup_pelican():
 # 发布更新
 def _3_publish_updates():
     # 更新博客主题
-    util.shell('cd tuxlite_tbs && git pull')
-    util.shell('pelican-themes -U tuxlite_tbs')
+    util.shell('cd %s/tuxlite_tbs && git pull' % util.MY_BLOG_PATH)
+    util.shell('pelican-themes -U %s/tuxlite_tbs' % util.MY_BLOG_PATH)
     # 更新博客内容
-    util.shell('cd blog && git pull')
+    util.shell('cd %s && git pull' % util.MY_BLOG_PATH)
     # 更新双DNS配置
-    util.shell('cd blog && cp -f config output/heriam.github.io/.git/')
+    util.shell('cd %s && cp -f config output/heriam.github.io/.git/' % util.MY_BLOG_PATH)
     # 升级博客插件
-    util.shell('cd blog/pelican-plugins && git pull')
+    util.shell('cd %s/pelican-plugins && git pull' % util.MY_BLOG_PATH)
     # 发布更新
-    util.shell('cd blog && make github')
+    util.shell('cd %s && make github' % util.MY_BLOG_PATH)
     # 更新结束
     util.info('Updates published successfully.')
 
 
-# 安装脚本
+# 安装更新脚本
 def _4_update_scriptify():
     with open('update-blog', 'a') as f:
         f.write('python %sauto-pelican.py 3' % util.env_absolute_path)
     util.shell('chmod 777 update-blog')
     util.shell('cp -f update-blog /usr/bin/')
     util.info('Script generated successfully.')
+
+
+# 卸载 Blog
+def _5_uninstall_pelican():
+    util.shell('rm -rf %s' % util.MY_BLOG_PATH)
+    util.shell('pip -y uninstall pelican Markdown')
+    util.info('Pelican uninstalled successfully.')
