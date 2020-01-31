@@ -90,16 +90,16 @@ def _3_publish_updates():
 
 # 安装更新脚本
 def _4_update_scriptify():
-    with open('update-blog', 'a') as f:
+    with open('/usr/local/bin/update-blog', 'w+') as f:
+        f.write('#!/bin/bash')
         f.write('python %sauto-pelican.py 3' % util.env_absolute_path)
-    util.shell('chmod 777 update-blog')
-    util.shell('cp -f update-blog /usr/local/bin/')
+    util.shell('chmod 777 /usr/local/bin/update-blog')
     util.info('Script generated successfully.')
 
 
 # 卸载 Blog
 def _5_uninstall_pelican():
     util.shell('rm -rf %s' % util.MY_BLOG_PATH)
-    util.shell('rm -rf /usr/local/bin/update-blog')
+    util.shell('rm -rf /usr/local/dbin/update-blog')
     util.shell('pelican-themes -r tuxlite_tbs')
     util.info('Pelican uninstalled successfully.')
