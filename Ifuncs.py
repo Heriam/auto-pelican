@@ -11,7 +11,7 @@ sitePkgDir = site.getsitepackages()[0]
 
 
 # 更新系统
-def _0_update_packages():
+def _0_update_packages_centos_only():
     util.shell('yum -y update', exit4fail=False)
     util.info('System updated successfully.')
 
