@@ -31,7 +31,7 @@ fh.setFormatter(formatter)
 logger.addHandler(fh)
 
 # 读取配置文件
-with open('config.json') as f:
+with open(env_absolute_path + 'config.json') as f:
     config = json.load(f)
 
 
