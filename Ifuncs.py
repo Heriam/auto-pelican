@@ -53,12 +53,9 @@ def _1_install_python3_centos_only():
 
 def _2_enable_git_ssh():
     util.shell('yum -y install xclip')
-    util.info("Checking existing ssh keys.")
     if os.path.exists('~/.ssh/id_rsa.pub'):
-        util.info('SSH key already exists.')
         util.shell('cat ~/.ssh/id_rsa.pub')
     else:
-        util.info('Generating a new SSH key.')
         util.shell('ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -P "" -C "%s"' % github_email)
     util.shell('xclip -sel clip < ~/.ssh/id_rsa.pub')
     util.info('SSH public key has been copied to the clipboard. You can now paste it to your Github account.')
