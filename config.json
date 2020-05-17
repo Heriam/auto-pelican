@@ -1,3 +1,5 @@
 {
-  "install_python3_version": "3.8.1"
+  "install_python3_version": "3.8.1",
+  "blog_path": "/usr/local/opt/myBlog",
+  "github_email": "haojiang@kth.se"
 }

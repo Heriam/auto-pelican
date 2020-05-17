@@ -8,7 +8,6 @@ import subprocess
 
 # 常量定义 ====
 PROJECT_NAME = 'auto-pelican'
-MY_BLOG_PATH = '/usr/local/opt/myBlog'
 
 # 工具对象 ====
 # Python版本
