@@ -51,14 +51,16 @@ def _1_install_python3_centos_only():
     else:
         util.info('Python3 already installed.')
 
+
 def _2_enable_git_ssh():
     util.shell('yum -y install xclip')
-    if os.path.exists('~/.ssh/id_rsa.pub'):
+    if os.path.exists('/root/.ssh/id_rsa.pub'):
         util.shell('cat ~/.ssh/id_rsa.pub')
     else:
         util.shell('ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -P "" -C "%s"' % github_email)
     util.shell('xclip -sel clip < ~/.ssh/id_rsa.pub')
     util.info('SSH public key has been copied to the clipboard. You can now paste it to your Github account.')
+
 
 # 安装 Pelican
 def _3_setup_pelican():
