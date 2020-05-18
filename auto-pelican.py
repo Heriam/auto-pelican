@@ -23,9 +23,9 @@ def print_options():
 def run():
     if len(args) == 1:
         while True:
-            select_and_run_opt(_input=True)
+            select_and_run_opt()
     elif len(args) == 2:
-        select_and_run_opt(_args=args[1])
+        select_and_run_opt(args=args[1])
     else:
         print('Invalid arguments. Only 1 argument is supported at most. Please try again and rerun the code as below:')
         print('python auto-pelican.py [option-number]')
@@ -33,27 +33,24 @@ def run():
 
 
 # 选择并允许选项
-def select_and_run_opt(_args=None, _input=False):
+def select_and_run_opt(args=None):
     # 初始化
     print_options()
-    opt = None
     # 入参解析
-    if _input and not _args:
-        try:
+    try:
+        if args:
+            opt = args
+        else:
             opt = input('Select option:')
-        except KeyboardInterrupt as err:
-            util.info('Have a nice day. Bye bye!')
-            sys.exit(0)
-        except (SyntaxError, NameError, AttributeError) as err:
+        # 执行操作
+        if (type(opt) == int or opt.isdigit()) and (len(menu) > int(opt) >= 0):
+            menu[int(opt)][1]()
+        else:
             util.info('Invalid input. Please retype the number of intended option.')
-    elif _args and not _input:
-        opt = _args
-    else:
-        SyntaxError('Operations must and can only be selected by either interactive input or initial arguments.')
-    # 执行操作
-    if (type(opt) == int or opt.isdigit()) and (len(menu) > int(opt) >= 0):
-        menu[int(opt)][1]()
-    else:
+    except KeyboardInterrupt as err:
+        util.info('Have a nice day. Bye bye!')
+        sys.exit(0)
+    except (SyntaxError, NameError, AttributeError) as err:
         util.info('Invalid input. Please retype the number of intended option.')
 
 
