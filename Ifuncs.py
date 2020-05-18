@@ -99,6 +99,9 @@ def _4_publish_updates():
 
 # 安装更新脚本
 def _5_install_script():
+    script_path = '/usr/local/bin/update-blog'
+    if os.path.exists(script_path):
+        os.remove(script_path)
     with open('/usr/local/bin/update-blog', 'w+') as f:
         f.write('#!/bin/bash\n')
         f.write('python %sauto-pelican.py' % util.env_absolute_path)
