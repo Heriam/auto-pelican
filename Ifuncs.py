@@ -98,10 +98,10 @@ def _4_publish_updates():
 
 
 # 安装更新脚本
-def _5_update_scriptify():
+def _5_install_script():
     with open('/usr/local/bin/update-blog', 'w+') as f:
         f.write('#!/bin/bash\n')
-        f.write('python %sauto-pelican.py 3' % util.env_absolute_path)
+        f.write('python %sauto-pelican.py' % util.env_absolute_path)
     util.shell('chmod 777 /usr/local/bin/update-blog')
     util.info('Script generated successfully.')
 
