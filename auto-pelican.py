@@ -42,9 +42,9 @@ def select_and_run_opt(_args=None, _input=False):
         try:
             opt = input('Select option:')
         except KeyboardInterrupt as err:
-            util.info('KeyboardInterrupt Exiting.')
+            util.info('Have a nice day. Bye bye!')
             sys.exit(0)
-        except (SyntaxError, NameError) as err:
+        except (SyntaxError, NameError, AttributeError) as err:
             util.info('Invalid input. Please retype the number of intended option.')
     elif _args and not _input:
         opt = _args
