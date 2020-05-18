@@ -99,14 +99,14 @@ def _4_publish_updates():
 
 # 安装更新脚本
 def _5_install_script():
-    script_path = '/usr/local/bin/update-blog'
+    script_path = '/usr/local/bin/auto-pelican'
     if os.path.exists(script_path):
         util.shell('rm -rf %s' % script_path)
-    with open('/usr/local/bin/update-blog', 'w+') as f:
+    with open(script_path, 'w+') as f:
         f.write('#!/bin/bash\n')
         f.write('python %sauto-pelican.py' % util.env_absolute_path)
-    util.shell('chmod 777 /usr/local/bin/update-blog')
-    util.info('Script generated successfully.')
+    util.shell('chmod 777 %s' % script_path)
+    util.info('Script generated successfully. You can now use "auto-pelican" command to quickly start auto-pelican.')
 
 
 # 卸载 Blog
