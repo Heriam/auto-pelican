@@ -70,8 +70,8 @@ def _2_enable_git_ssh():
 # 安装 Pelican
 def _3_setup_pelican():
     # pip 安装 Pelican
-    util.shell('pip3 install pelican Markdown BeautifulSoup4')
-    util.shell('pip install pelican Markdown BeautifulSoup4')
+    if not util.shell('pip3 install pelican Markdown BeautifulSoup4', exit4fail=False):
+        util.shell('pip install pelican Markdown BeautifulSoup4')
     # git clone 博客输入内容
     util.shell('git clone https://github.com/Heriam/blog.git %s' % blog_path)
     # git clone 博客输出内容
