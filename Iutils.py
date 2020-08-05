@@ -15,7 +15,7 @@ python_version = sys.version_info[:3]
 python_version_str = '.'.join(str(i) for i in sys.version_info[:3])
 
 # 系统信息
-system_info = platform.uname()
+system = platform.system()
 
 # 绝对路径
 env_absolute_path = os.path.abspath(__file__).replace(os.path.basename(__file__),'')

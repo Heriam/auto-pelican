@@ -1,5 +1,6 @@
 {
   "install_python3_version": "3.8.1",
-  "blog_path": "/usr/local/opt/myBlog",
+  "blog_path": "/usr/local/myBlog",
+  "script_path": "/usr/bin/auto-pelican",
   "github_email": "haojiang@kth.se"
 }
