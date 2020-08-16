@@ -62,6 +62,8 @@ def _1_install_python3():
 
 
 def _2_enable_git_ssh():
+    util.shell('git config --global user.email "haojiang@kth.se"')
+    util.shell('git config --global user.name "Heriam" ')
     if 'id_rsa.pub' not in os.popen('ls ~/.ssh/').read():
         util.shell('ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -P "" -C "%s"' % github_email)
     util.shell('cat ~/.ssh/id_rsa.pub')
