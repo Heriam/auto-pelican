@@ -73,6 +73,8 @@ def _3_setup_pelican():
     # pip 安装 Pelican
     if not util.shell('pip3 install pelican Markdown BeautifulSoup4 -i %s' % pip_repo, exit4fail=False):
         util.shell('pip install pelican Markdown BeautifulSoup4 -i %s' % pip_repo)
+    if os.path.exists(blog_path):
+        _6_uninstall_pelican()
     # git clone 博客输入内容
     util.shell('git clone https://github.com/Heriam/blog.git %s' % blog_path)
     # git clone 博客输出内容
