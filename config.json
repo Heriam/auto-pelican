@@ -2,5 +2,6 @@
   "install_python3_version": "3.8.1",
   "blog_path": "~/Projects/myBlog",
   "script_path": "/usr/local/bin/auto-pelican",
-  "github_email": "haojiang@kth.se"
+  "github_email": "haojiang@kth.se",
+  "pip_repo": "https://pypi.tuna.tsinghua.edu.cn/simple"
 }
